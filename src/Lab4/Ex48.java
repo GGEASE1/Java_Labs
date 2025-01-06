@@ -51,7 +51,7 @@ public class Ex48
                     System.out.println("Введите корректный ответ!");
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Введите корректный ответ!");
+                System.out.println("Введите корректный ответ!!");
             }
         }
     }
