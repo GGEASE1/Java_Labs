@@ -14,7 +14,7 @@ public class RewriteDataFile
         {
             br = new BufferedReader(
                     new InputStreamReader(
-                        new FileInputStream("C:\\Users\\kazan\\IdeaProjects\\Java_Labs\\src\\Lab8\\Ex82\\MyFile1.txt"),"cp1251");
+                        new FileInputStream("C:\\Users\\kazan\\IdeaProjects\\Java_Labs\\src\\Lab8\\Ex82\\MyFile1.txt"),"cp1251"));
             int count = 0;
             String s, result_str = "";
             br.readLine();
