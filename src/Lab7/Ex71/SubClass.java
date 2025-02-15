@@ -27,5 +27,4 @@ public class SubClass extends SuperClass
                 "str 3 = " + this.str3 ;
         return ClassNameAndFieldValue;
     }
-
 }

@@ -1,7 +1,4 @@
-1) HelloBrother
 2) Hello World
 1.234
 8.76
 10.8
--11.44
--20.54

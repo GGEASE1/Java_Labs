@@ -26,5 +26,4 @@ public class SuperClass
     {
         return str1;
     }
-
 }
