@@ -27,25 +27,15 @@ public class task1005
             // Максимально возможная сумма для одной кучи
             int maxPossibleSum = totalWeight / 2;
 
-            boolean[][] dp = new boolean[n + 1][maxPossibleSum + 1];
+            // Массив для хранения достижимых сумм
+            boolean[] reachableSums = new boolean[maxPossibleSum + 1];
+            reachableSums[0] = true;
 
-            // Базовый случай: любая пустая кучка имеет сумму 0
-            dp[0][0] = true;
-
-            for (int i = 1; i <= n; i++)
+            for (int weight : weights)
             {
-                int currentWeight = weights[i - 1];
-
-                for (int j = 0; j <= maxPossibleSum; j++)
+                for (int j = maxPossibleSum; j >= weight; j--)
                 {
-                    if (j >= currentWeight)
-                    {
-                        dp[i][j] = dp[i - 1][j] || dp[i - 1][j - currentWeight];
-                    }
-                    else
-                    {
-                        dp[i][j] = dp[i - 1][j];
-                    }
+                    reachableSums[j] = reachableSums[j] || reachableSums[j - weight];
                 }
             }
 
@@ -53,7 +43,7 @@ public class task1005
             int maxAchievableSum = 0;
             for (int sum = maxPossibleSum; sum >= 0; sum--)
             {
-                if (dp[n][sum])
+                if (reachableSums[sum])
                 {
                     maxAchievableSum = sum;
                     break;
