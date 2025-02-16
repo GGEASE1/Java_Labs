@@ -1,4 +1,4 @@
-package timus;
+package timus_1;
 
 import java.io.*;
 import java.util.Arrays;
@@ -7,7 +7,7 @@ public class task1880
 {
     public static void main(String[] args) throws IOException
     {
-        String inputFileName = "timus/input.txt";
+        String inputFileName = "timus_1/input.txt";
         boolean oj = System.getProperty("ONLINE_JUDGE") != null;
         BufferedReader bufferedReader =
                 oj ? new BufferedReader(new InputStreamReader(System.in)) :

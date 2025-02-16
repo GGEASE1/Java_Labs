@@ -1,4 +1,4 @@
-package timus;
+package timus_1;
 
 import java.io.*;
 
@@ -6,7 +6,7 @@ public class task2100
 {
     public static void main(String[] args)
     {
-        String inputFileName = "timus/input.txt";
+        String inputFileName = "timus_1/input.txt";
         boolean oj = System.getProperty("ONLINE_JUDGE") != null;
         int marshalAndLilly = 2;
 
