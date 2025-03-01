@@ -2,7 +2,7 @@ package Lab9.Ex92;
 
 import java.util.*;
 
-public class Test1
+public class Test
 {
     public static void main(String[] args)
     {
