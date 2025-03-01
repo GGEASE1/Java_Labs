@@ -2,10 +2,11 @@ package Lab9.Ex98.Cycle;
 
 public class Main
 {
+    public static void main(String[] args)
     {
         MyList listHead = new MyList();
         MyList listTail = new MyList();
-        String[] values = {"Kirill", "Danil", "Denis", "Vlad", "Daniel"};
+        String[] values = {"911", "Mikhail", "Circle", "Vlad", "A4"};
         System.out.println("Заполение списка с головы:");
         listHead.createHead(values);
         System.out.println(listHead.toString());
@@ -13,13 +14,13 @@ public class Main
         listTail.createTail(values);
         System.out.println(listTail.toString());
         System.out.println("Добавление элемента в начало списка:");
-        listHead.addFirst("Victor");
+        listHead.addFirst("What is love");
         System.out.println(listHead.toString());
         System.out.println("Добавление элемента в конец списка:");
-        listHead.addLast("Magnus");
+        listHead.addLast("GG");
         System.out.println(listHead.toString());
         System.out.println("Добавление элемента в указанное место списка:");
-        listHead.insert(2, "Linkoln");
+        listHead.insert(4, "Nikon");
         System.out.println(listHead.toString());
         System.out.println("Удаление первого элемента из списка:");
         listHead.removeFirst();
@@ -28,7 +29,7 @@ public class Main
         listHead.removeLast();
         System.out.println(listHead.toString());
         System.out.println("Удаление элемента по индексу из списка:");
-        listHead.remove(3);
+        listHead.remove(2);
         System.out.println(listHead.toString());
         MyList listHeadRec = new MyList();
 
