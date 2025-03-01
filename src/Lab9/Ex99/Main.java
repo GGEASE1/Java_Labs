@@ -4,142 +4,116 @@ import java.util.*;
 
 public class Main
 {
+    private static final Random random = new Random();
+
     public static void main(String[] args)
     {
-        List<Integer> arrayList = new ArrayList<>();
-        List<Integer> linkedList = new LinkedList<>();
-        SortedSet<Integer> sortedSet = new TreeSet<>();
+        ArrayDeque<Integer> ArrayDeque = new ArrayDeque<>();
+        ArrayList<Integer> ArrayList = new ArrayList<>();
+        TreeSet<Integer> TreeSet = new TreeSet<>();
 
-        System.out.println("Добавление элементов:");
-        System.out.println("ArrayList: " + getRunningTimeAdd(arrayList) + " ms");
-        System.out.println("LinkedList: " + getRunningTimeAdd(linkedList) + " ms");
-        System.out.println("TreeSet: " + getRunningTimeAdd(sortedSet) + " ms");
-
-        System.out.println("\nДобавление в начало:");
-        System.out.println("ArrayList: " + getRunningTimeAddFirst(arrayList) + " ms");
-        System.out.println("LinkedList: " + getRunningTimeAddFirst(linkedList) + " ms");
-
-        System.out.println("\nДобавление в середину:");
-        System.out.println("ArrayList: " + getRunningTimeAddMiddle(arrayList) + " ms");
-        System.out.println("LinkedList: " + getRunningTimeAddMiddle(linkedList) + " ms");
-
-        System.out.println("\nДобавление в конец:");
-        System.out.println("ArrayList: " + getRunningTimeAddLast(arrayList) + " ms");
-        System.out.println("LinkedList: " + getRunningTimeAddLast(linkedList) + " ms");
-        System.out.println("TreeSet: " + getRunningTimeAddLast(sortedSet) + " ms");
-
-        System.out.println("\nУдаление из начала:");
-        System.out.println("ArrayList: " + getRunningTimeRemoveFirst(arrayList) + " ms");
-        System.out.println("LinkedList: " + getRunningTimeRemoveFirst(linkedList) + " ms");
-
-        System.out.println("\nУдаление из середины:");
-        System.out.println("ArrayList: " + getRunningTimeRemoveMiddle(arrayList) + " ms");
-        System.out.println("LinkedList: " + getRunningTimeRemoveMiddle(linkedList) + " ms");
-
-        System.out.println("\nУдаление из конца:");
-        System.out.println("ArrayList: " + getRunningTimeRemoveLast(arrayList) + " ms");
-        System.out.println("LinkedList: " + getRunningTimeRemoveLast(linkedList) + " ms");
-        System.out.println("TreeSet: " + getRunningTimeRemoveLast(sortedSet) + " ms");
-
-        System.out.println("\nПолучение элемента по индексу:");
-        System.out.println("ArrayList: " + getRunningTimeGet(arrayList) + " ms");
-        System.out.println("LinkedList: " + getRunningTimeGet(linkedList) + " ms");
-        System.out.println("TreeSet: " + getRunningTimeGet(sortedSet) + " ms");
-    }
-
-    private static long getRunningTimeAdd(Collection<Integer> collection)
-    {
-        long start = System.currentTimeMillis();
-        for (int i = 0; i < 200000; i++)
+        for (int i = 0; i < 9000000; i++)
         {
-            collection.add(i);
+            int value = random.nextInt();
+            ArrayDeque.add(value);
+            ArrayList.add(value);
+            TreeSet.add(value);
         }
-        return System.currentTimeMillis() - start;
-    }
-    // Добавление всех элементов
 
-    private static long getRunningTimeAddFirst(List<Integer> list)
+        measureAddFirst(ArrayDeque);
+        measureAddFirst(ArrayList);
+        measureAddFirst(TreeSet);
+
+        measureAddMiddle(ArrayList);
+
+        measureAddLast(ArrayDeque);
+        measureAddLast(ArrayList);
+        measureAddLast(TreeSet);
+
+        measureRemoveFirst(ArrayDeque);
+        measureRemoveFirst(ArrayList);
+
+        measureRemoveMiddle(ArrayList);
+
+        measureRemoveLast(ArrayDeque);
+        measureRemoveLast(ArrayList);
+
+        measureGetByIndex(ArrayList);
+    }
+
+    private static void measureAddFirst(Collection<Integer> collection)
     {
-        long start = System.currentTimeMillis();
-        for (int i = 0; i < 200000; i++)
-        {
-            list.add(0, i);
-        }
-        return System.currentTimeMillis() - start;
+        long startTime = System.nanoTime();
+        collection.add(0);
+        long endTime = System.nanoTime();
+        System.out.println("Добавление элемента в начало " + collection.getClass().getSimpleName() + ": " + (endTime - startTime) + " ns");
     }
-    // Добавление в начало ArrayList
 
-    private static long getRunningTimeAddMiddle(List<Integer> list)
+    private static void measureAddLast(Collection<Integer> collection)
     {
-        long start = System.currentTimeMillis();
-        int middle = list.size() / 2;
-        for (int i = 0; i < 200000; i++)
+        long startTime = System.nanoTime();
+        collection.add(random.nextInt());
+        long endTime = System.nanoTime();
+        System.out.println("Добавление элемента в конец " + collection.getClass().getSimpleName() + ": " + (endTime - startTime) + " ns");
+    }
+
+    private static void measureAddMiddle(Collection<Integer> collection)
+    {
+        long startTime = System.nanoTime();
+        ((List<Integer>) collection).add(9000000 / 2, random.nextInt());
+        long endTime = System.nanoTime();
+        System.out.println("Добавление элемента в середину " + collection.getClass().getSimpleName() + ": " + (endTime - startTime) + " ns");
+    }
+
+    private static void measureRemoveFirst(Collection<Integer> collection)
+    {
+        long startTime = System.nanoTime();
+        if (collection instanceof Deque || collection instanceof List)
         {
-            list.add(middle, i);
-        }
-        return System.currentTimeMillis() - start;
-    }
-    // Добавление в середину ArrayList
-
-    private static long getRunningTimeAddLast(Collection<Integer> collection) {
-        long start = System.currentTimeMillis();
-        for (int i = 0; i < 200000; i++) {
-            collection.add(i);
-        }
-        return System.currentTimeMillis() - start;
-    }
-    // Добавление в конец (ArrayList, TreeSet)
-
-    private static long getRunningTimeRemoveFirst(List<Integer> list) {
-        long start = System.currentTimeMillis();
-        for (int i = 0; i < 200000 && !list.isEmpty(); i++) {
-            list.remove(0);
-        }
-        return System.currentTimeMillis() - start;
-    }
-    // Удаление из начала (ArrayList)
-
-    private static long getRunningTimeRemoveMiddle(List<Integer> list) {
-        long start = System.currentTimeMillis();
-        int middle = list.size() / 2;
-        for (int i = 0; i < 200000 && middle < list.size(); i++) {
-            list.remove(middle);
-        }
-        return System.currentTimeMillis() - start;
-    }
-    // Удаление из середины (ArrayList)
-
-    private static long getRunningTimeRemoveLast(Collection<Integer> collection) {
-        long start = System.currentTimeMillis();
-        if (collection instanceof List) {
-            List<Integer> list = (List<Integer>) collection;
-            for (int i = 0; i < 200000 && !list.isEmpty(); i++) {
-                list.remove(list.size() - 1);
+            if (collection instanceof Deque)
+            {
+                ((Deque<Integer>) collection).removeFirst();
             }
-        } else if (collection instanceof SortedSet) {
-            SortedSet<Integer> set = (SortedSet<Integer>) collection;
-            for (int i = 0; i < 200000 && !set.isEmpty(); i++) {
-                set.remove(set.last());
+            else
+            {
+                ((List<Integer>) collection).remove(0);
             }
         }
-        return System.currentTimeMillis() - start;
+        long endTime = System.nanoTime();
+        System.out.println("Удаление элемента в начале " + collection.getClass().getSimpleName() + ": " + (endTime - startTime) + " ns");
     }
-    // Удаление из конца (ArrayList, TreeSet)
 
-    private static long getRunningTimeGet(Collection<Integer> collection) {
-        long start = System.currentTimeMillis();
-        if (collection instanceof List) {
-            List<Integer> list = (List<Integer>) collection;
-            for (int i = 0; i < 200000; i++) {
-                list.get(i % list.size()); // Берём случайный индекс
+    private static void measureRemoveLast(Collection<Integer> collection)
+    {
+        long startTime = System.nanoTime();
+        if (collection instanceof Deque || collection instanceof List)
+        {
+            if (collection instanceof Deque)
+            {
+                ((Deque<Integer>) collection).removeLast();
             }
-        } else if (collection instanceof SortedSet) {
-            SortedSet<Integer> set = (SortedSet<Integer>) collection;
-            for (int i = 0; i < 200000; i++) {
-                set.contains(i);
+            else
+            {
+                ((List<Integer>) collection).remove(collection.size() - 1);
             }
         }
-        return System.currentTimeMillis() - start;
+        long endTime = System.nanoTime();
+        System.out.println("Удаление элемента в конце " + collection.getClass().getSimpleName() + ": " + (endTime - startTime) + " ns");
     }
-    // Получение элемента по индексу (ArrayList, TreeSet)
+
+    private static void measureRemoveMiddle(Collection<Integer> collection)
+    {
+        long startTime = System.nanoTime();
+        ((List<Integer>) collection).remove(9000000 / 2);
+        long endTime = System.nanoTime();
+        System.out.println("Удаление элемента в середине " + collection.getClass().getSimpleName() + ": " + (endTime - startTime) + " ns");
+    }
+
+    private static void measureGetByIndex(Collection<Integer> collection)
+    {
+        long startTime = System.nanoTime();
+        ((List<Integer>) collection).get(9000000 / 2);
+        long endTime = System.nanoTime();
+        System.out.println("Получение элемента по индексу " + collection.getClass().getSimpleName() + ": " + (endTime - startTime) + " ns");
+    }
 }
