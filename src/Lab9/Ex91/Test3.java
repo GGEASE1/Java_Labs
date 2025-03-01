@@ -1,5 +1,7 @@
 package Lab9.Ex91;
 
+import java.util.Scanner;
+
 public class Test3
 {
     private static int step = 0;
@@ -28,6 +30,8 @@ public class Test3
 
     public static void main(String[] args)
     {
-        m(1);
+        Scanner in = new Scanner(System.in);
+        int a = in.nextInt();
+        m(a);
     }
 }
