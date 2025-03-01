@@ -1,4 +1,4 @@
-package Lab9.Ex98.Cycle;
+package Lab9.Ex98;
 
 public class Main
 {
