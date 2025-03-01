@@ -6,6 +6,7 @@ public class Main
     {
         MyList listHead = new MyList();
         MyList listTail = new MyList();
+
         String[] values = {"911", "Mikhail", "Circle", "Vlad", "A4"};
         System.out.println("Заполение списка с головы:");
         listHead.createHead(values);

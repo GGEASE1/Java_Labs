@@ -71,7 +71,9 @@ public class MyList
         {
             head = newNode;
             tail = newNode;
-        } else {
+        }
+        else
+        {
             tail.next = newNode;
             tail = newNode;
         }
@@ -80,7 +82,6 @@ public class MyList
             String newValue [] = Arrays.copyOfRange(values, 1, values.length);
             createTailRec(newValue);
         }
-        return;
     }
     //С хвоста
 
