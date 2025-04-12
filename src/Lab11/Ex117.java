@@ -38,5 +38,4 @@ public class Ex117
     {
         return list.stream().filter(s->s.length()>length).toList();
     }
-
 }
