@@ -4,7 +4,7 @@ public class math
 {
     public static int Sum(int[] numbers)
     {
-        int numThreads = 6; // Используем 6 потоков независимо от количества ядер
+        int numThreads = Runtime.getRuntime().availableProcessors();
         int chunkSize = numbers.length / numThreads;
 
         Thread[] threads = new Thread[numThreads];
@@ -25,7 +25,7 @@ public class math
         {
             for (Thread thread : threads)
             {
-                thread.join(); // Ожидание завершения всех потоков
+                thread.join();
             }
         }
         catch (InterruptedException e)
