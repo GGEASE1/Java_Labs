@@ -1,7 +1,5 @@
 package Lab12.Ex126;
 
-import Lab12.Ex125.find;
-
 import java.util.Random;
 import java.util.Scanner;
 
