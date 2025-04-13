@@ -1,4 +1,4 @@
-package Lab13;
+package Lab13.Task1;
 
 public class Ex1314 {
 }
