@@ -6,7 +6,7 @@ public class find
 {
     public static int Max(int[] numbers)
     {
-        int numThreads = 6;
+        int numThreads = Runtime.getRuntime().availableProcessors();
         int chunkSize = numbers.length / numThreads;
 
         Thread[] threads = new Thread[numThreads];
