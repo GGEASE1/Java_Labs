@@ -7,8 +7,8 @@ public class Ex132
         try
         {
             System.out.println("0");
-            System.out.println("1");
             throw new RuntimeException("Непроверяемая ошибка");
+            //System.out.println("1"); строка не выполниться
         }
         catch (Exception e)
         {
